@@ -1,0 +1,10 @@
+<form [formGroup]="form" [ngClass]="formClasses">
+  <ng-container *ngFor="let question of questions">
+    <dynamic-question [form]="form" [question]="question"></dynamic-question>
+    <ul style="list-style-type: none">
+      <li *ngFor="let error of form.controls[question.id].errors | mapToIterable">
+        {{error.key}}
+      </li>
+    </ul>
+  </ng-container>
+</form>

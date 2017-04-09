@@ -1,0 +1,23 @@
+<div [formGroup]="form">
+  <label [for]="question.id">{{question.label}}</label>
+  <ng-container [ngSwitch]="question.controlType">
+    <!--input-->
+    <input *ngSwitchCase="'input'" [type]="question.type" [id]="question.id"
+           [formControlName]="question.id">
+
+    <!--dropdown-->
+    <select *ngSwitchCase="'dropdown'" [id]="question.id" [formControlName]="question.id">
+      <option *ngFor="let opt of options" [value]="opt.key">{{opt.value}}</option>
+    </select>
+
+    <!--file-->
+    <div *ngSwitchCase="file">
+      <input #uploadInput type="file" [id]="question.questionId">
+      <ul>
+        <li *ngFor="let file of uploadInput.files">
+          <label>{{file.name}}</label>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+</div>
