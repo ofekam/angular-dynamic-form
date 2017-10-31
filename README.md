@@ -5,11 +5,11 @@ The usage will be:
 - use the tags dynamic-form or dynamic-question
 
 #### dynamic-form:
-Recives an array of type Question wich included in the directory, [questions]="".
-Can get a list of classes as a string for example : "class-a class-b class-c",[formClasses]="".
+- Recives an array of type Question wich included in the directory, [questions]="".
+- Can get a list of classes as a string for example : "class-a class-b class-c",[formClasses]="".
 
 #### dynamic-question:
-Recives an object of type Question wich included in the directory,[questions]="". In the Question.ts file I included the basic types
+Recives an object of type Question wich included in the directory,[questions]="".In the Question.ts file I included the basic types
 like Input,Dropdown,File. I used [Angular cookbook](https://angular.io/docs/ts/latest/cookbook/dynamic-form.html "Angular.io Dynamic-Form cookbook")
 for the start.
 I added to each question the options of:
