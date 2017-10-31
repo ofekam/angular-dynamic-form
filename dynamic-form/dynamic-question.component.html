@@ -1,4 +1,4 @@
-<div [formGroup]="form">
+<div [formGroup]="form" [style.display]="showQuestion">
   <label [for]="question.id">{{question.label}}</label>
   <ng-container [ngSwitch]="question.controlType">
     <!--input-->
@@ -7,7 +7,7 @@
 
     <!--dropdown-->
     <select *ngSwitchCase="'dropdown'" [id]="question.id" [formControlName]="question.id">
-      <option *ngFor="let opt of options" [value]="opt.key">{{opt.value}}</option>
+      <option *ngFor="let opt of question.choices" [value]="opt.key">{{opt.value}}</option>
     </select>
 
     <!--file-->

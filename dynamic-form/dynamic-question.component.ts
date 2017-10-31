@@ -1,17 +1,18 @@
+
 /**
  * Created by ofek_am on 09/04/2017.
  */
-import {Component, Input} from "@angular/core";
-import {FileQuestion, Question} from "./question";
-import {FormGroup} from "@angular/forms";
+import { Component, Input, OnChanges, SimpleChanges, OnInit } from "@angular/core";
+import { FileQuestion, Question } from "./question";
+import { FormGroup } from "@angular/forms";
+import { ConditionService } from './condition.service';
 
 @Component({
   moduleId: module.id,
   selector: 'dynamic-question',
   templateUrl: 'dynamic-question.component.html'
 })
-export class DynamicQuestionComponent {
-
+export class DynamicQuestionComponent implements OnInit {
   @Input() question: Question;
   @Input() form: FormGroup;
   @Input() classes: string[];
@@ -19,7 +20,20 @@ export class DynamicQuestionComponent {
   @Input() fileClasses: string[];
   @Input() filesListContainerClasses: string[];
 
-  constructor() {
+  constructor(private conditionService: ConditionService) {
+  }
+
+  ngOnInit(): void {
+    debugger;
+    this.conditionService.checkQuestion(this.question, this.form);
+    this.form.valueChanges.subscribe(val => {
+      debugger;
+      this.conditionService.checkQuestion(this.question, this.form);
+    })
+  }
+
+  get showQuestion() {
+    return this.question.toHide ? 'none' : 'block'
   }
 
   upload() {
@@ -54,5 +68,8 @@ export class DynamicQuestionComponent {
       }
     }
   }
+
+
+
 
 }
